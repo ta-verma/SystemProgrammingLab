@@ -1,0 +1,161 @@
+Grammar
+
+    0 $accept: S $end
+
+    1 S: A A A A A A A A A A S1 B NL
+
+    2 S1: A S
+    3   | /* empty */
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+A (258) 1 2
+B (259) 1
+NL (260) 1
+
+
+Nonterminals, with rules where they appear
+
+$accept (6)
+    on left: 0
+S (7)
+    on left: 1, on right: 0 2
+S1 (8)
+    on left: 2 3, on right: 1
+
+
+State 0
+
+    0 $accept: . S $end
+
+    A  shift, and go to state 1
+
+    S  go to state 2
+
+
+State 1
+
+    1 S: A . A A A A A A A A A S1 B NL
+
+    A  shift, and go to state 3
+
+
+State 2
+
+    0 $accept: S . $end
+
+    $end  shift, and go to state 4
+
+
+State 3
+
+    1 S: A A . A A A A A A A A S1 B NL
+
+    A  shift, and go to state 5
+
+
+State 4
+
+    0 $accept: S $end .
+
+    $default  accept
+
+
+State 5
+
+    1 S: A A A . A A A A A A A S1 B NL
+
+    A  shift, and go to state 6
+
+
+State 6
+
+    1 S: A A A A . A A A A A A S1 B NL
+
+    A  shift, and go to state 7
+
+
+State 7
+
+    1 S: A A A A A . A A A A A S1 B NL
+
+    A  shift, and go to state 8
+
+
+State 8
+
+    1 S: A A A A A A . A A A A S1 B NL
+
+    A  shift, and go to state 9
+
+
+State 9
+
+    1 S: A A A A A A A . A A A S1 B NL
+
+    A  shift, and go to state 10
+
+
+State 10
+
+    1 S: A A A A A A A A . A A S1 B NL
+
+    A  shift, and go to state 11
+
+
+State 11
+
+    1 S: A A A A A A A A A . A S1 B NL
+
+    A  shift, and go to state 12
+
+
+State 12
+
+    1 S: A A A A A A A A A A . S1 B NL
+
+    A  shift, and go to state 13
+
+    $default  reduce using rule 3 (S1)
+
+    S1  go to state 14
+
+
+State 13
+
+    2 S1: A . S
+
+    A  shift, and go to state 1
+
+    S  go to state 15
+
+
+State 14
+
+    1 S: A A A A A A A A A A S1 . B NL
+
+    B  shift, and go to state 16
+
+
+State 15
+
+    2 S1: A S .
+
+    $default  reduce using rule 2 (S1)
+
+
+State 16
+
+    1 S: A A A A A A A A A A S1 B . NL
+
+    NL  shift, and go to state 17
+
+
+State 17
+
+    1 S: A A A A A A A A A A S1 B NL .
+
+    $default  reduce using rule 1 (S)
